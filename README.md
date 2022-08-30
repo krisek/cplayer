@@ -13,3 +13,9 @@ You might think how weird it is to display a casette during listening to an audi
 The various parts of the code are released under various licences, I kept those. All my modifications (ie. changes after the initial seed) are released under GPLv3.
 
 The whole app speaks for itself, there is no need to further explanation, happy listening!
+
+## TODOs/Known issues:
+
+1. if the player is hosted over https, then only https streams can be played
+2. implement PWA
+3. implement ChomeApp
