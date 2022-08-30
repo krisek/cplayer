@@ -122,7 +122,7 @@
 					for( var i = 0, len = _self.options.songs.length; i < len; ++i ) {
 						
 						var song = new $.Song( _self.options.songs[i], i );
-						console.log('going to set duration');
+						
 						$.when( song.loadMetadata() ).done( function( song ) {
 							
 							( song.id < len / 2 ) ? playlistSide1.push( song ) : playlistSide2.push( song );
@@ -173,16 +173,16 @@
 			this.$controls 	= $( '<ul class="vc-controls" style="display:none;"/>' );
 			
 			this.$cPlay		= $( '<li class="vc-control-play">Play<span></span></li>' );
-			/* this.$cRewind	= $( '<li class="vc-control-rewind">Rew<span></span></li>' );
-			this.$cForward	= $( '<li class="vc-control-fforward">FF<span></span></li>' ); */
+			//this.$cRewind	= $( '<li class="vc-control-rewind">Rew<span></span></li>' );
+			//this.$cForward	= $( '<li class="vc-control-fforward">FF<span></span></li>' );
 			this.$cStop		= $( '<li class="vc-control-stop">Stop<span></span></li>' );
-			/* this.$cSwitch	= $( '<li class="vc-control-switch">Switch<span></span></li>' ); */
+			//this.$cSwitch	= $( '<li class="vc-control-switch">Switch<span></span></li>' );
 			
 			this.$controls.append( this.$cPlay )
-						  .append( this.$cRewind )
-						  .append( this.$cForward )
+//						  .append( this.$cRewind )
+//						  .append( this.$cForward )
 						  .append( this.$cStop )
-						  .append( this.$cSwitch )
+//						  .append( this.$cSwitch )
 						  .appendTo( this.$el );
 
 			this.$volume 	= $( '<div style="display:none;" class="vc-volume-wrap"><div class="vc-volume-control"><div class="vc-volume-knob"></div></div></div> ').appendTo( this.$el );
@@ -217,14 +217,14 @@
 		_loadEvents			: function() {
 			
 			var _self = this;
-			
-		/*	this.$cSwitch.on( 'mousedown', function( event ) {
+			/*
+			this.$cSwitch.on( 'mousedown', function( event ) {
 				
 				_self._setButtonActive( $( this ) );
 				_self._switchSides();
 				
 			} );
-		*/	
+			*/
 			this.$cPlay.on( 'mousedown', function( event ) {
 				
 				_self._setButtonActive( $( this ) );
@@ -238,7 +238,7 @@
 				_self._stop();
 
 			} );
-		/*
+			/*
 			this.$cForward.on( 'mousedown', function( event ) {
 				
 				_self._setButtonActive( $( this ) );
@@ -252,12 +252,10 @@
 				_self._rewind();
 			
 			} );
-		*/	
+			*/
 			this.$audioEl.on( 'timeupdate', function( event ) {
-				
-				_self.audio.currentTime  += 1; 
+			
 				_self.cntTime	= _self.timeIterator + _self.audio.currentTime;
-				//console.log('timeupdate called ' + _self.cntTime);
 				var wheelVal	= _self._getWheelValues( _self.cntTime );
 				_self._updateWheelValue( wheelVal );
 
@@ -367,15 +365,15 @@
 
 			this.$cPlay.removeClass( pressedClass );
 			this.$cStop.removeClass( pressedClass );
-			/* this.$cRewind.removeClass( pressedClass );
-			this.$cForward.removeClass( pressedClass );
-			*/
+			//this.$cRewind.removeClass( pressedClass );
+			//this.$cForward.removeClass( pressedClass );
+
 			switch( button ) {
 
 				case 'play'		: this.$cPlay.addClass( pressedClass ); break;
-			/*	case 'rewind'	: this.$cRewind.addClass( pressedClass ); break;
-				case 'forward'	: this.$cForward.addClass( pressedClass ); break;
-			*/
+				//case 'rewind'	: this.$cRewind.addClass( pressedClass ); break;
+				//case 'forward'	: this.$cForward.addClass( pressedClass ); break;
+
 			}
 
 		},
@@ -384,7 +382,7 @@
 			this.audio.volume = ratio;
 			
 		},
-		
+
 		_getRadioURL : function(){
 			var radio_url = document.getElementById('radio_url').value;
 			localStorage.setItem('radio_url', radio_url);
@@ -399,9 +397,6 @@
 
 		},
 		
-		
-		
-		
 		_play				: function() {
 
 			var _self	= this;
@@ -413,16 +408,14 @@
 				var data	= _self._updateStatus();
 
 			if( data ) {
-					console.log('play starting');
-					
 
 					//_self._prepare( _self._getSide().current.getSong( data.songIdx ) );
 					_self._prepare( _self._getRadioURL() );
 					_self.$audioEl.on( 'canplay', function( event ) {
 
 					$( this ).off( 'canplay' );
-					console.log(_self._getSide().current.getSong( data.songIdx ))
-					_self.audio.currentTime = 1; /* data.timeInSong; */
+					
+					_self.audio.currentTime = data.timeInSong;
 					_self.audio.play();
 					_self.isMoving = true;
 
@@ -818,16 +811,14 @@
 		
 		},
 		_setDuration		: function() {
-			/* set fixed 45 mins duration for the side */
-			this.duration = 2700;
-			/* 
+		
 			this.duration = 0;
 			
 			for( var i = 0, len = this.playlist.length; i < len; ++i ) {
 			
 				this.duration += this.playlist[ i ].duration;
 			
-			} */
+			}
 		
 		},
 		getDuration			: function() {
@@ -885,6 +876,7 @@
 			return $.Deferred(
 			
 				function( dfd ) {
+					
 					_self.duration = 2700; 
 					dfd.resolve( _self );
 					/* var $tmpAudio 	= $( '<audio/>' ),
