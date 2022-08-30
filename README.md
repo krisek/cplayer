@@ -4,7 +4,7 @@ This is a companion app: I was always looking for a good multiplatform (Linux/Ch
 
 [![Screenshot](cplayer.png)](cplayer.png)
 
-I recently stumbled across [this](https://tympanus.net/codrops/2012/07/12/old-school-cassette-player-with-html5-audio/) project and it seems to perfectly fit for the job. After a bit of tweaking this little HTML5 based music player is perfectly capable to do the job.
+I recently stumbled across [this](https://tympanus.net/codrops/2012/07/12/old-school-cassette-player-with-html5-audio/) project and after a bit of tweaking this little HTML5 based music player seems to be perfectly capable to do the job.
 
 The result of this tweaking can be found in this repo.
 
