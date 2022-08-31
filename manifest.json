@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2, 
+    "version": "1.0", 
+    "name": "CPlayer",
+    "description": "Casette Player - HTML5 audio stream player",
+    "icons":
+    {
+    "16": "images/name-16.png", 
+    "48": "images/name-48.png",
+    "128": "images/name-128.png"
+    },
+    "permissions": ["storage", "<all_urls>"],
+    "app": {
+        "background": {
+          "scripts": ["main.js"]
+        }
+      }
+}

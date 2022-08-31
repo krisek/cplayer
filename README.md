@@ -1,4 +1,4 @@
-# Casette Player - HTML5 audio player
+# Casette Player - HTML5 audio stream player
 
 This is a companion app: I was always looking for a good multiplatform (Linux/ChromeOS/Android in my case) stream player that can play my [MPD](https://www.musicpd.org/) audio stream managed through [Audioloader](https://github.com/krisek/audioloader).
 

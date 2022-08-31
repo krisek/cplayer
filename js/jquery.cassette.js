@@ -77,10 +77,25 @@
 
 			this.$loader		= this.$el.find( 'div.vc-loader' ).show();
 
-			radio_url = localStorage.getItem('radio_url'); 
-			if(typeof radio_url !== 'undefined'){
-				document.getElementById('radio_url').value = radio_url;
+			try{
+				chrome.storage.sync.get(function(items) {
+					if(typeof items.radio_url !== 'undefined'){
+						document.getElementById('radio_url').value = items.radio_url;
+					}
+	
+				});
+
 			}
+			catch (error){
+				document.getElementById('radio_url').value = localStorage.getItem('radio_url');
+
+			}
+			
+			
+			// if(typeof radio_url === 'undefined'){
+			//  radio_url = localStorage.getItem('radio_url'); 
+			//}
+			
 
 			// create cassette sides
 			$.when( this._createSides() ).done( function() {
@@ -385,7 +400,16 @@
 
 		_getRadioURL : function(){
 			var radio_url = document.getElementById('radio_url').value;
-			localStorage.setItem('radio_url', radio_url);
+			var obj = {};
+			obj[radio_url] = document.getElementById('radio_url').value;
+			
+			try {
+				chrome.storage.sync.set({'radio_url': document.getElementById('radio_url').value});
+			}			
+			catch(error){
+				localStorage.setItem('radio_url', radio_url);
+			}
+			
 			var song = new $.Song( 'Audioloader', 0 );
 
 			song.duration = 10;
@@ -591,9 +615,14 @@
 
 			var T	= this._getSide().current.getDuration(),
 				val = {
-					left	: ( this.currentSide === 1 ) ? ( -70 / T ) * x + 70 : ( 70 / T ) * x,
-					right	: ( this.currentSide === 1 ) ?  ( 70 / T ) * x : ( -70 / T ) * x + 70
+					left	: ( this.currentSide === 1 ) ? ( -70 / T ) * x + 70 : ( 70 / T ) * x, 
+					right	: ( this.currentSide === 1 ) ?  ( 70 / T ) * x : ( -70 / T ) * x + 70,
 				};
+			if(val['left'] > 70) val['left'] = 70;
+			if(val['right'] > 70) val['right'] = 70;
+			// console.log("_getWheelValues");
+			// console.log("getSide().current.getDuration()" + T);
+			// console.log(val);
 			return val;
 
 		},
