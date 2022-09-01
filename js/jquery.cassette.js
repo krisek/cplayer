@@ -432,7 +432,6 @@
 				var data	= _self._updateStatus();
 
 			if( data ) {
-
 					//_self._prepare( _self._getSide().current.getSong( data.songIdx ) );
 					_self._prepare( _self._getRadioURL() );
 					_self.$audioEl.on( 'canplay', function( event ) {
@@ -618,8 +617,14 @@
 					left	: ( this.currentSide === 1 ) ? ( -70 / T ) * x + 70 : ( 70 / T ) * x, 
 					right	: ( this.currentSide === 1 ) ?  ( 70 / T ) * x : ( -70 / T ) * x + 70,
 				};
-			if(val['left'] > 70) val['left'] = 70;
-			if(val['right'] > 70) val['right'] = 70;
+			if(val['left'] > 70) val['left'] = 71;
+			if(val['right'] > 70) val['right'] = 71;
+			if(val['left'] == 71 ){
+				this.currentSide = 2;
+			}
+			if(val['right'] == 71 ){
+				this.currentSide = 1;
+			}
 			// console.log("_getWheelValues");
 			// console.log("getSide().current.getDuration()" + T);
 			// console.log(val);
