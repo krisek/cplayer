@@ -1,0 +1,13 @@
+{
+    "version": "1.0", 
+    "name": "CPlayer",
+    "description": "Casette Player - HTML5 audio stream player",
+    "display": "standalone",
+    "icons":
+    [
+    {"src": "images/name-16.png","type": "image/png", "sizes": "16x16"},
+    {"src": "images/name-48.png","type": "image/png", "sizes": "48x48"},
+    {"src": "images/name-128.png","type": "image/png", "sizes": "128x128"}
+
+    ]
+}
