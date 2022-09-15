@@ -17,4 +17,4 @@ The whole app speaks for itself, there is no need to further explanation, happy 
 ## TODOs/Known issues:
 
 1. if the player is hosted over https, then only https streams can be played
-2. HTML audio element is not the best for radio streams, anomalies/slow response can be expected once playback is stopped and restarted – reload the app if it became unresponsive
+2. HTML audio element is not the best for radio streams, anomalies/slow response can be expected once playback is stopped and restarted. Reload the app if it became unresponsive–––actually as of my experience the simplest is to close and open again–––any hinsts are welcome, I tried to debug/optimize quite much, no real success.
