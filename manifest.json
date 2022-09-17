@@ -1,18 +1,27 @@
 {
-    "manifest_version": 2, 
+    "manifest_version": 3, 
     "version": "1.0", 
     "name": "CPlayer",
-    "description": "Casette Player - HTML5 audio stream player",
+    "description": "Cassette Player - HTML5 audio stream player",    
     "icons":
     {
     "16": "images/name-16.png", 
     "48": "images/name-48.png",
     "128": "images/name-128.png"
     },
-    "permissions": ["storage", "<all_urls>"],
-    "app": {
-        "background": {
-          "scripts": ["main.js"]
-        }
-      }
+    "permissions": ["storage"],
+    "action": {
+      "default_icon": {
+        "48": "images/name-48.png"
+      },
+      "default_title": "CPlayer",
+      "default_popup": "popup.html"
+    },
+    "offline_enabled": true,
+    "options_page": "index.html",
+    "web_accessible_resources": [{
+      "resources": ["*.html","*.json","*.js","js/*", "images/*", "css/*", "sounds/*"],
+      "matches": ["http://*/*","https://*/*"],
+      "extension_ids": []
+    }]
 }
